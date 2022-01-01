@@ -45,6 +45,7 @@ class Custom_Card extends StatelessWidget {
              fontSize: 12,
              fontWeight: FontWeight.bold,
              color:primary? Colors.white:Colors.black 
+             
             ),
             ),
          Image.asset(

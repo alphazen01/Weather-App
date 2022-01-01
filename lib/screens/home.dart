@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Map weatherData={};
   Future getWeather()async{
-    final response = await http.get(Uri.parse(baseUrl+api+"lat=$lat"+"&"+"lon=$lon"+"&exclude=hourly,daily"+"&appid=$apiKey"));
+    final response = await http.get(Uri.parse
+    (baseUrl+api+"lat=$lat"+"&"+"lon=$lon"+"&exclude=hourly,daily"+"&appid=$apiKey"));
     if(response.statusCode==200){
       setState(() {
         weatherData=jsonDecode(response.body); 
