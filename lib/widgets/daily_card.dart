@@ -22,43 +22,46 @@ class DailyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Image.asset(
-          "assets/$imageName.png",
-          scale: 1,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Image.asset(
+            "assets/$imageName.png",
+            scale: 1,
+            ),
+          Text(
+            "$value",
+            style: TextStyle(
+           fontSize: 36,
+           fontWeight: FontWeight.bold
+         ),
           ),
-        Text(
-          "$value",
-          style: TextStyle(
-         fontSize: 36,
-         fontWeight: FontWeight.bold
-       ),
-        ),
-       
-        Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
-             Text(
-               "$day",
-               style: TextStyle(
-                 color: Colors.black,
-                 fontSize: 13,
-                 fontWeight: FontWeight.bold 
+         
+          Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               Text(
+                 "$day",
+                 style: TextStyle(
+                   color: Colors.black,
+                   fontSize: 13,
+                   fontWeight: FontWeight.bold 
+                 ),
                ),
-             ),
-             Text(
-               "$date",
-               style: TextStyle(
-                 color: Colors.black,
-                 fontSize: 11,
-                 fontWeight: FontWeight.bold 
-               ),
-             )
-           ],
-         )
-      ],
+               Text(
+                 "$date",
+                 style: TextStyle(
+                   color: Colors.black,
+                   fontSize: 11,
+                   fontWeight: FontWeight.bold 
+                 ),
+               )
+             ],
+           )
+        ],
+      ),
     );
   }
 }

@@ -1,10 +1,38 @@
+import 'dart:convert';
+
 import 'package:demo/widgets/daily_card.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
 
   const DetailsScreen({ Key? key }) : super(key: key);
- 
+
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+
+
+final baseUrl="api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=7&appid=eee222ea3ece225edcedf966de7163ba";
+ Map weatherData={};
+  Future getWeather()async{
+    final response = await http.get(Uri.parse
+    (baseUrl));
+    if(response.statusCode==200){
+      setState(() {
+        weatherData=jsonDecode(response.body); 
+        // print("object:$weatherData");
+      });
+     
+    }
+  }
+  @override
+  void initState() {
+    getWeather();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
    
@@ -83,7 +111,10 @@ class DetailsScreen extends StatelessWidget {
                         Column(
                           children: [
                             Text(
-                              "23º",
+                              "23°",
+                              // "${weatherData["city"]["name"]}",
+                              // "${weatherData["city"]["name"]}",
+                              
                                style: TextStyle(
                                fontSize: 72
                             ),
@@ -148,7 +179,7 @@ class DetailsScreen extends StatelessWidget {
                               scrollDirection: Axis.vertical,
                               itemBuilder: (contex,index){
                                 return DailyCard(
-                                  value: "23º",
+                                  value: "${weatherData["list"][0]["temp"]["day"]}",
                                   imageName: "Sun_cloud_angled_rain",
                                   date: "9 Marche 2021",
                                   day:"Monday" ,
